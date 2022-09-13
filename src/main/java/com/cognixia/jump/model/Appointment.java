@@ -3,7 +3,6 @@ package com.cognixia.jump.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
