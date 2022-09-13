@@ -1,5 +1,5 @@
 package com.cognixia.jump.repository;
 
-public interface CritterCutsRepository {
+public interface AppointmentRepository {
     
 }
