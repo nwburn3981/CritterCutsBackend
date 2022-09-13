@@ -31,7 +31,8 @@ public class AppointmentController {
 	}
 	
 //	@PostMapping("/appointments/new")
-//	public List<Appointment> addNewAppointment(){
+//	public List<Appointment> addNewAppointment(Appointment appointment){
+//		appointment.setAppointment_id(-1L);
 //		
 //	}
 }
