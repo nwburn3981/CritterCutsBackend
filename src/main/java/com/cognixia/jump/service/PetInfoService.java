@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.PetInfo;
 import com.cognixia.jump.repository.PetInfoRepository;
 
@@ -19,10 +20,10 @@ public class PetInfoService {
 		return petRepo.findAll();
 	}
 	
-	public PetInfo getPetById(long pet_id){
+	public PetInfo getPetById(long pet_id) throws ResourceNotFoundException{
 		Optional<PetInfo> found = petRepo.findById(pet_id);
 		if(!found.isPresent()) {
-			return null;
+			throw new ResourceNotFoundException("Pet with id = " +pet_id + " could not be found.");
 		}
 		return found.get();
 	}
@@ -34,16 +35,17 @@ public class PetInfoService {
 		return saved;
 	}
 	
-	public PetInfo updatePetInfo(PetInfo petInfo) {
+	public PetInfo updatePetInfo(PetInfo petInfo) throws ResourceNotFoundException{
 		
-		if(petRepo.existsById(petInfo.getPet_id())) {
-			return null;
+		if(!petRepo.existsById(petInfo.getPet_id())) {
+			throw new ResourceNotFoundException("Pet with id = " + petInfo.getPet_id()
+					+ " could not be found and cannot be updated.");
 		}
 		PetInfo updated = petRepo.save(petInfo);
 		return updated;
 	}
 	
-	public PetInfo deletePetInfo(long pet_id) {
+	public PetInfo deletePetInfo(long pet_id) throws ResourceNotFoundException{
 		
 		PetInfo toDelete = getPetById(pet_id);
 		
