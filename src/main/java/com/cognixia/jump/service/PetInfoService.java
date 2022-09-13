@@ -1,4 +1,4 @@
-package com.cognixia.service;
+package com.cognixia.jump.service;
 
 import java.util.List;
 import java.util.Optional;
