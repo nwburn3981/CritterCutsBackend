@@ -33,9 +33,6 @@ public class Appointment implements Serializable{
     @Column
     private Double appointment_price;
 
-    @Column
-    private Long appointment_pet_id;
-
     public Appointment() {
 
     }
