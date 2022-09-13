@@ -88,7 +88,7 @@ public class Appointment implements Serializable{
     @Override
     public String toString() {
         return "Appointment [appointment_caretaker=" + appointment_caretaker + ", appointment_date=" + appointment_date
-                + ", appointment_id=" + appointment_id + ", appointment_pet_id=" + appointment_pet_id
+                + ", appointment_id=" + appointment_id + ", appointment_pet_id="
                 + ", appointment_price=" + appointment_price + ", appointment_service=" + appointment_service
                 + ", appointment_time=" + appointment_time + "]";
     }
