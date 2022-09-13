@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.PetInfo;
 import com.cognixia.jump.service.PetInfoService;
 
@@ -32,7 +33,7 @@ public class PetInfoController {
 	}
 	
 	@GetMapping("/petInfo/id/{pet_id}")
-	public PetInfo getPet(@PathVariable long pet_id) {
+	public PetInfo getPet(@PathVariable long pet_id) throws ResourceNotFoundException {
 		return petService.getPetById(pet_id);
 	}
 	
@@ -45,13 +46,13 @@ public class PetInfoController {
 	}
 	
 	@PutMapping("/petInfo/update/petInfo")
-	public ResponseEntity<PetInfo> updatePetInfo(@Valid @RequestBody PetInfo petInfo){
+	public ResponseEntity<PetInfo> updatePetInfo(@Valid @RequestBody PetInfo petInfo) throws ResourceNotFoundException{
 		PetInfo updated = petService.updatePetInfo(petInfo);
 		return new ResponseEntity<>(updated, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/petInfo/delete/{pet_id}")
-	public ResponseEntity<PetInfo> removePet(@PathVariable long pet_id){
+	public ResponseEntity<PetInfo> removePet(@PathVariable long pet_id) throws ResourceNotFoundException{
 		PetInfo deleted = petService.deletePetInfo(pet_id);
 		
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
