@@ -1,5 +1,9 @@
 package com.cognixia.jump.repository;
 
-public interface AppointmentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cognixia.jump.model.Appointment;
+
+public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     
 }
