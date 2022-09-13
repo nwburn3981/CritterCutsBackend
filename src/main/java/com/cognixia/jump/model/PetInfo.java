@@ -15,7 +15,7 @@ public class PetInfo implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer pet_id;
+	private Long pet_id;
 	
 	@Column
 	private String pet_name;
@@ -34,9 +34,9 @@ public class PetInfo implements Serializable{
 	
 	public PetInfo() {
 		this(-1, "N/A", -1, "N/A", "N/A", false);
-	};
+	}
 
-	public PetInfo(Integer pet_id, String pet_name, Integer pet_age, String pet_type, String pet_breed,
+	public PetInfo(Long pet_id, String pet_name, Integer pet_age, String pet_type, String pet_breed,
 			Boolean pet_is_vaccindated) {
 		super();
 		this.pet_id = pet_id;
@@ -47,11 +47,11 @@ public class PetInfo implements Serializable{
 		this.pet_is_vaccindated = pet_is_vaccindated;
 	}
 
-	public Integer getPet_id() {
+	public Long getPet_id() {
 		return pet_id;
 	}
 
-	public void setPet_id(Integer pet_id) {
+	public void setPet_id(Long pet_id) {
 		this.pet_id = pet_id;
 	}
 
@@ -99,7 +99,9 @@ public class PetInfo implements Serializable{
 	public String toString() {
 		return "PetInfo [pet_id=" + pet_id + ", pet_name=" + pet_name + ", pet_age=" + pet_age + ", pet_type="
 				+ pet_type + ", pet_breed=" + pet_breed + ", pet_is_vaccindated=" + pet_is_vaccindated + "]";
-	}
+	};
+
+	
 	
 
 	
