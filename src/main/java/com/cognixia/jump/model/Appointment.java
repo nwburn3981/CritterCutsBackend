@@ -16,7 +16,7 @@ public class Appointment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer appointment_id;
+    private Long appointment_id;
 
     @Column(nullable = false)
     private LocalDate appointment_date;
@@ -34,14 +34,25 @@ public class Appointment implements Serializable{
     private Double appointment_price;
 
     public Appointment() {
-
+        this(-1L, LocalDate.now(), LocalTime.now(), "N/A", "N/A", 0.00);
     }
 
-    public Integer getAppointment_id() {
+    public Appointment(Long appointment_id, LocalDate appointment_date, LocalTime appointment_time,
+            String appointment_service, String appointment_caretaker, Double appointment_price) {
+        super();
+        this.appointment_id = appointment_id;
+        this.appointment_date = appointment_date;
+        this.appointment_time = appointment_time;
+        this.appointment_service = appointment_service;
+        this.appointment_caretaker = appointment_caretaker;
+        this.appointment_price = appointment_price;
+    }
+
+    public Long getAppointment_id() {
         return appointment_id;
     }
 
-    public void setAppointment_id(Integer appointment_id) {
+    public void setAppointment_id(Long appointment_id) {
         this.appointment_id = appointment_id;
     }
 
