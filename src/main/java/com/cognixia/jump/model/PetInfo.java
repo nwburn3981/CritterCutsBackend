@@ -33,7 +33,7 @@ public class PetInfo implements Serializable{
 	private Boolean pet_is_vaccindated;
 	
 	public PetInfo() {
-		this(-1, "N/A", -1, "N/A", "N/A", false);
+		this(-1L, "N/A", -1, "N/A", "N/A", false);
 	}
 
 	public PetInfo(Long pet_id, String pet_name, Integer pet_age, String pet_type, String pet_breed,
