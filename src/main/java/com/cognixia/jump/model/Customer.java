@@ -20,7 +20,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int customer_id;
+	private Long customer_id;
 
 	@Column
 	private String customer_name;
@@ -34,11 +34,17 @@ public class Customer implements Serializable {
 	@Pattern(regexp = "^[0-9]{10}$")
 	private int customer_phone;
 
+	@Column
 	private String username;
 
+	@Column
 	private String password;
+	
+	public Customer(){
+		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A");
+	}
 
-	public Customer(int customer_id, String customer_name, Date dOB,
+	public Customer(Long customer_id, String customer_name, Date dOB,
 			@Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$") String customer_email,
 			@Pattern(regexp = "^[0-9]{10}$") int customer_phone, String username, String password) {
 		super();
@@ -51,7 +57,7 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 
-	public int getCustomer_id() {
+	public Long getCustomer_id() {
 		return customer_id;
 	}
 
@@ -79,7 +85,7 @@ public class Customer implements Serializable {
 		return password;
 	}
 
-	public void setCustomer_id(int customer_id) {
+	public void setCustomer_id(Long customer_id) {
 		this.customer_id = customer_id;
 	}
 

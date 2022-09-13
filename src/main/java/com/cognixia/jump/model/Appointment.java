@@ -85,6 +85,7 @@ public class Appointment implements Serializable{
         this.appointment_price = appointment_price;
     }
 
+
 	@Override
 	public String toString() {
 		return "Appointment [appointment_id=" + appointment_id + ", appointment_date=" + appointment_date
@@ -93,6 +94,7 @@ public class Appointment implements Serializable{
 	}
 
     
+
 
     
 }
