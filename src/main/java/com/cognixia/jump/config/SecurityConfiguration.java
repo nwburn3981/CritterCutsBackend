@@ -1,9 +1,26 @@
 package com.cognixia.jump.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+//import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.cognixia.jump.filter.JwtRequestFilter;
+
+@Configuration
 public class SecurityConfiguration {
-<<<<<<< Updated upstream
-    
-=======
 	
 	@Autowired
 	UserDetailsService userDetailsService;
@@ -26,9 +43,6 @@ public class SecurityConfiguration {
 		http.csrf().disable()
 			.authorizeRequests()
 		//	.antMatchers("/api/**").hasRole("USER") // have to be user role to access /hello
-			
-			.antMatchers("/api/appointments").permitAll()
-			
 			.antMatchers("/create/customer").permitAll()
 			.antMatchers("/authenticate").permitAll() // allow anyone to create token
 			//.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
@@ -70,5 +84,11 @@ public class SecurityConfiguration {
 		return authConfig.getAuthenticationManager();
 	}
 	
->>>>>>> Stashed changes
 }
+
+
+
+
+
+
+
