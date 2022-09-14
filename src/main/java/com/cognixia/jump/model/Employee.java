@@ -51,8 +51,7 @@ public class Employee implements Serializable {
 	@JoinColumn(unique = true)
 	private User user;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(unique = false)
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Appointment> appointment;
 	
 	public Employee() {
