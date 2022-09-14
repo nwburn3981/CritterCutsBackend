@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Appointment implements Serializable{
@@ -32,6 +37,14 @@ public class Appointment implements Serializable{
 
     @Column
     private Double appointment_price;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(unique = true, name = "pet_id")
+    private PetInfo pet;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(unique = true, name = "employee_id")
+    private Employee employee;
 
     public Appointment() {
         this(-1L, LocalDate.now(), LocalTime.now(), "N/A", "N/A", 0.00);
