@@ -1,3 +1,4 @@
+
 package com.cognixia.jump.service;
 
 import java.util.Optional;
@@ -40,3 +41,4 @@ public class MyUserDetailsService implements UserDetailsService {
 	}
 
 }
+

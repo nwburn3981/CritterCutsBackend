@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PetInfo implements Serializable{
@@ -31,6 +34,10 @@ public class PetInfo implements Serializable{
 	
 	@Column
 	private Boolean pet_is_vaccindated;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner")
+	private Customer owner;
 	
 	public PetInfo() {
 		this(-1L, "N/A", -1, "N/A", "N/A", false);
