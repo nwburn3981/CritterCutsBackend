@@ -43,7 +43,7 @@ public class Appointment implements Serializable{
     private PetInfo pet;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = false, name = "employee_id")
+    @JoinColumn(unique = false, name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
 
     public Appointment() {
