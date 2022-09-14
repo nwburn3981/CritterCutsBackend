@@ -3,6 +3,7 @@ package com.cognixia.jump.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -49,6 +52,10 @@ public class Customer implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column( nullable = false )
 	private Role role;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(unique = true)
+	private User user;
 	
 	public Customer(){
 		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A");
