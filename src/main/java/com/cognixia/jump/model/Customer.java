@@ -60,7 +60,7 @@ public class Customer implements Serializable {
 	private User user;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(unique = true)
+	@JoinColumn(unique = false)
 	private List<PetInfo> pets;
 	
 	public Customer(){
