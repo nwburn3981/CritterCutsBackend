@@ -9,14 +9,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.cognixia.jump.model.Customer;
-import com.cognixia.jump.repository.CustomerRepository;
+import com.cognixia.jump.model.User;
+import com.cognixia.jump.repository.UserRepository;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 	
 	@Autowired
-	CustomerRepository repo;
+	UserRepository repo;
 
 	
 	// method will by called by Spring Security when a request comes in
@@ -28,7 +28,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Optional<Customer> userFound = repo.findByUsername(username);
+		Optional<User> userFound = repo.findByUsername(username);
 		
 		// if username doesn't exist in the table, through an exception
 		if(userFound.isEmpty()) {
