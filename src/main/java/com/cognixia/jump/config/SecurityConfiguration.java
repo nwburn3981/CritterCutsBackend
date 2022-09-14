@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.cognixia.jump.filter.JwtRequestFilter;
 
+@SuppressWarnings("deprecation")
 @Configuration
 public class SecurityConfiguration {
 	

@@ -86,6 +86,23 @@ public class User implements Serializable {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public String getType() {
+		if (this.employee != null)
+			return "Employee";
+		else
+			return "Customer";
+	}
 
 	@Override
 	public String toString() {
