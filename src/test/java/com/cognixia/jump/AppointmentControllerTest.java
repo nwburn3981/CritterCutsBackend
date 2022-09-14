@@ -38,4 +38,16 @@ public class AppointmentControllerTest {
         .andExpect(jsonPath("$[0].appointment_caretaker", is("Jane Doe")))
         .andExpect(jsonPath("$[0].appointment_price", is("100.99")));
     }
+
+    @Test
+    void testGetAppointmentById() throws Exception {
+        String id = "1";
+        String uri = "/api/appointments/" + id;
+        mvc.perform(get(uri))
+        .andExpect(jsonPath("$[0].appointment_date", is("2022-01-01")))
+        .andExpect(jsonPath("$[0].appointment_time", is("12:00:00")))
+        .andExpect(jsonPath("$[0].appointment_service", is("Routine Groom")))
+        .andExpect(jsonPath("$[0].appointment_caretaker", is("Jane Doe")))
+        .andExpect(jsonPath("$[0].appointment_price", is("100.99")));
+    }
 }

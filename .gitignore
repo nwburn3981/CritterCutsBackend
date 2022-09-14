@@ -59,3 +59,4 @@ build/
 
 ### Appliaction.properties file
 *.properties
+src/main/resources/application-dev.properties
