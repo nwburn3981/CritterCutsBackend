@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,10 @@ public class Customer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public static enum Role {
+		ROLE_USER	// roles should start with capital ROLE_ and has to be completely in capital letters
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,8 +36,8 @@ public class Customer implements Serializable {
 
 	@Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
 	private String customer_email;
-
-	@Pattern(regexp = "^[0-9]{10}$")
+	@Column
+	//@Pattern(regexp = "^[0-9]{10}$")
 	private int customer_phone;
 
 	@Column
@@ -39,6 +45,10 @@ public class Customer implements Serializable {
 
 	@Column
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	@Column( nullable = false )
+	private Role role;
 	
 	public Customer(){
 		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A");
@@ -111,6 +121,15 @@ public class Customer implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override

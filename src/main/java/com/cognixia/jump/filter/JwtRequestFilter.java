@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.cognixia.jump.service.PetInfoService;
+import com.cognixia.jump.service.MyUserDetailsService;
 import com.cognixia.jump.util.JwtUtil;
 
 // filters in spring are used to filter through requests/responses
@@ -29,7 +29,7 @@ import com.cognixia.jump.util.JwtUtil;
 public class JwtRequestFilter extends OncePerRequestFilter { // abstract class that makes sure an action performed once when filter is called
 
 	@Autowired
-	private PetInfoService petInfoService;
+	private MyUserDetailsService userDetailsService;
 	
 	@Autowired
 	private JwtUtil jwtUtil;
@@ -66,7 +66,7 @@ public class JwtRequestFilter extends OncePerRequestFilter { // abstract class t
 			
 			// ...load in their details
             //TODO: Load User By Username in petInfoService?
-			UserDetails userDetails = petInfoService.loadUserByUsername(username);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 			
 			// check if token is valid based on the given user and as long as token is not expired
 			if( jwtUtil.validateToken(jwt, userDetails) ) {

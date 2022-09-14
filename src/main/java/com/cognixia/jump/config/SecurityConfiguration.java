@@ -7,12 +7,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 //import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.cognixia.jump.filter.JwtRequestFilter;
 
@@ -36,13 +39,13 @@ public class SecurityConfiguration {
 	// Authorization - what do you want?
 	@Bean
 	protected SecurityFilterChain filterChain( HttpSecurity http ) throws Exception {
-		/**
+		
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/hello").hasRole("USER") // have to be user role to access /hello
+		//	.antMatchers("/api/**").hasRole("USER") // have to be user role to access /hello
+			.antMatchers("/create/customer").permitAll()
 			.antMatchers("/authenticate").permitAll() // allow anyone to create token
-			.antMatchers("/create").permitAll()
-			.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
+			//.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
 			.and()
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ); // tell spring security to NOT CREATE sessions
 		
@@ -50,7 +53,7 @@ public class SecurityConfiguration {
 		// the filter for jwts, in order to make sure of that, the filter has to be checked before you check the 
 		// username & password (filter)
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-		 */
+				 
 		return http.build();
 	}
 	
@@ -59,7 +62,7 @@ public class SecurityConfiguration {
 	@Bean
 	protected PasswordEncoder encoder() {
 		
-		return NoOpPasswordEncoder.getInstance();
+		return new BCryptPasswordEncoder();
 		
 	}
 	
