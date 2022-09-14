@@ -33,7 +33,7 @@ public class PetInfo implements Serializable{
 	private String pet_breed;
 	
 	@Column
-	private Boolean pet_is_vaccindated;
+	private Boolean pet_is_vaccinated;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(unique = false, name = "pet_owner_id", referencedColumnName = "customer_id")
@@ -44,14 +44,14 @@ public class PetInfo implements Serializable{
 	}
 
 	public PetInfo(Long pet_id, String pet_name, Integer pet_age, String pet_type, String pet_breed,
-			Boolean pet_is_vaccindated) {
+			Boolean pet_is_vaccinated) {
 		super();
 		this.pet_id = pet_id;
 		this.pet_name = pet_name;
 		this.pet_age = pet_age;
 		this.pet_type = pet_type;
 		this.pet_breed = pet_breed;
-		this.pet_is_vaccindated = pet_is_vaccindated;
+		this.pet_is_vaccinated = pet_is_vaccinated;
 	}
 
 	public Long getPet_id() {
@@ -94,18 +94,18 @@ public class PetInfo implements Serializable{
 		this.pet_breed = pet_breed;
 	}
 
-	public Boolean getPet_is_vaccindated() {
-		return pet_is_vaccindated;
+	public Boolean getPet_is_vaccinated() {
+		return pet_is_vaccinated;
 	}
 
-	public void setPet_is_vaccindated(Boolean pet_is_vaccindated) {
-		this.pet_is_vaccindated = pet_is_vaccindated;
+	public void setPet_is_vaccinated(Boolean pet_is_vaccinated) {
+		this.pet_is_vaccinated = pet_is_vaccinated;
 	}
 
 	@Override
 	public String toString() {
 		return "PetInfo [pet_id=" + pet_id + ", pet_name=" + pet_name + ", pet_age=" + pet_age + ", pet_type="
-				+ pet_type + ", pet_breed=" + pet_breed + ", pet_is_vaccindated=" + pet_is_vaccindated + "]";
+				+ pet_type + ", pet_breed=" + pet_breed + ", pet_is_vaccinated=" + pet_is_vaccinated + "]";
 	};
 
 	
