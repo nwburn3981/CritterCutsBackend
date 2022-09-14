@@ -57,5 +57,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### Appliaction.properties file
+### Application.properties file
 *.properties
