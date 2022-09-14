@@ -39,11 +39,11 @@ public class Appointment implements Serializable{
     private Double appointment_price;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true, name = "pet_id")
+    @JoinColumn(unique = false, name = "pet_id")
     private PetInfo pet;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(unique = true, name = "employee_id")
+    @JoinColumn(unique = false, name = "employee_id")
     private Employee employee;
 
     public Appointment() {
