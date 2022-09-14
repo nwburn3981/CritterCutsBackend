@@ -59,8 +59,7 @@ public class Customer implements Serializable {
 	@JoinColumn(unique = true)
 	private User user;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(unique = false)
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<PetInfo> pets;
 	
 	public Customer(){

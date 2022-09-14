@@ -36,7 +36,7 @@ public class PetInfo implements Serializable{
 	private Boolean pet_is_vaccindated;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "owner")
+	@JoinColumn(unique = false, name = "pet_owner_id", referencedColumnName = "customer_id")
 	private Customer owner;
 	
 	public PetInfo() {
