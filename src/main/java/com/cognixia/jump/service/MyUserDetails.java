@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cognixia.jump.model.Customer;
+import com.cognixia.jump.model.User;
 
 // UserDetails class -> used by spring security to find all of the necessary information for authorization & authentication
 public class MyUserDetails implements UserDetails {
@@ -24,7 +25,7 @@ public class MyUserDetails implements UserDetails {
 	
 	
 	// when a new object created, will extract only the RELEVANT info from our User object
-	public MyUserDetails(Customer user) {
+	public MyUserDetails(User user) {
 		
 		this.username = user.getUsername();
 		this.password = user.getPassword();
@@ -32,7 +33,7 @@ public class MyUserDetails implements UserDetails {
 		
 		// Granted Authority -> permissions/grants a user has access to retrieve or operations to perform
 		// GA is given based on the user's roles
-		this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getRole().name() ) );
+		this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getCustomer().getRole().name() ) );
 	}
 	
 	
