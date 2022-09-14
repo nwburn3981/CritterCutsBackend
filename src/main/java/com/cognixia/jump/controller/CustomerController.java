@@ -22,7 +22,7 @@ import com.cognixia.jump.util.JwtUtil;
 @CrossOrigin
 @RequestMapping("/api")
 @RestController
-public class CustomerComtroller {
+public class CustomerController {
 	
 	@Autowired
 	AuthenticationManager authenticationManager;

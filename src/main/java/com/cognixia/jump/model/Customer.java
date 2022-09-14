@@ -24,10 +24,9 @@ public class Customer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	public static enum Role {
-		ROLE_USER // roles should start with capital ROLE_ and has to be completely in capital
-					// letters
+		ROLE_USER	// roles should start with capital ROLE_ and has to be completely in capital letters
 	}
 
 	@Id
@@ -43,22 +42,28 @@ public class Customer implements Serializable {
 	@Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
 	private String customer_email;
 	@Column
-	// @Pattern(regexp = "^[0-9]{10}$")
+	//@Pattern(regexp = "^[0-9]{10}$")
 	private int customer_phone;
 
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private Role role;
+	@Column
+	private String username;
 
+	@Column
+	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	@Column( nullable = false )
+	private Role role;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
 	private User user;
-
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
 	private List<PetInfo> pets;
-
-	public Customer() {
+	
+	public Customer(){
 		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A", new User());
 	}
 
@@ -71,6 +76,8 @@ public class Customer implements Serializable {
 		this.dob = dOB;
 		this.customer_email = customer_email;
 		this.customer_phone = customer_phone;
+		this.username = username;
+		this.password = password;
 		this.user = user;
 	}
 
@@ -94,6 +101,14 @@ public class Customer implements Serializable {
 		return customer_phone;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	public void setCustomer_id(Long customer_id) {
 		this.customer_id = customer_id;
 	}
@@ -114,6 +129,15 @@ public class Customer implements Serializable {
 		this.customer_phone = customer_phone;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+
 	public Role getRole() {
 		return role;
 	}
@@ -125,8 +149,8 @@ public class Customer implements Serializable {
 	@Override
 	public String toString() {
 		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", dob=" + dob
-				+ ", customer_email=" + customer_email + ", customer_phone=" + customer_phone + ", role=" + role
-				+ ", user=" + user + ", pets=" + pets + "]";
+				+ ", customer_email=" + customer_email + ", customer_phone=" + customer_phone + ", username=" + username
+				+ ", password=" + password + "]";
 	}
 
 }
