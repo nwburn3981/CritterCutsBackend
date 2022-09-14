@@ -32,17 +32,19 @@ public class User implements Serializable {
 	private Customer customer;
 	
 	//Once employee model is created this will be where it relates to User
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(unique = true)
-//	private Employee employee;
+	@OneToOne(mappedBy = "user")
+	private Employee employee;
+	
+	public User () {
+		this(-1L, "", "", false);
+	}
 
-	public User(Long user_id, String username, String password, boolean enabled, Customer customer) {
+	public User(Long user_id, String username, String password, boolean enabled) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.customer = customer;
 	}
 
 	public Long getUser_id() {
