@@ -2,7 +2,7 @@ package com.cognixia.jump;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 //import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,5 +49,11 @@ public class AppointmentControllerTest {
         .andExpect(jsonPath("$[0].appointment_service", is("Routine Groom")))
         .andExpect(jsonPath("$[0].appointment_caretaker", is("Jane Doe")))
         .andExpect(jsonPath("$[0].appointment_price", is("100.99")));
+    }
+
+    @Test
+    void testAddNewAppointment() throws Exception {
+        String uri = "/api/appointments/new";
+        //mvc.perform(post(uri)).content(asJsonString)
     }
 }

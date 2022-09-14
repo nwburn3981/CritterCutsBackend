@@ -52,7 +52,7 @@ public class Employee implements Serializable {
 	private User user;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(unique = true)
+	@JoinColumn(unique = false)
 	private List<Appointment> appointment;
 	
 	public Employee() {
