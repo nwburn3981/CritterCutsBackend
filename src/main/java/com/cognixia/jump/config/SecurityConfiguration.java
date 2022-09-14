@@ -42,10 +42,19 @@ public class SecurityConfiguration {
 		
 		http.csrf().disable()
 			.authorizeRequests()
-		//	.antMatchers("/api/**").hasRole("USER") // have to be user role to access /hello
-			.antMatchers("/create/customer").permitAll()
+			
+			/********************* USER ROLE ***********************/
+//			.antMatchers("/api/username").hasRole("USER"))
+			.antMatchers("/create/customer").hasRole("USER")
+			
+			
+			/********************* EMPLOYEE ROLE ***********************/
+			
+			
+			/********************* ALL ROLES ***********************/
 			.antMatchers("/authenticate").permitAll() // allow anyone to create token
 			//.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
+
 			.and()
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ); // tell spring security to NOT CREATE sessions
 		

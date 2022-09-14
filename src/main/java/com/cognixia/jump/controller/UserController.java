@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.exception.ResourceNotFoundException;
+
 import com.cognixia.jump.model.AuthenticationRequest;
+
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.UserRepository;
 
