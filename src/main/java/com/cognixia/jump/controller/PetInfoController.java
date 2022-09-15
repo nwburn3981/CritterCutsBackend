@@ -1,6 +1,7 @@
 package com.cognixia.jump.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -58,6 +59,9 @@ public class PetInfoController {
 		return new ResponseEntity<>(deleted, HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/petInfo/pet_customerid/{id}")
+	public PetInfo findPetbyCustomerId(@PathVariable Long id) throws ResourceNotFoundException{
+		return petService.findPetbyCustomerId(id);
+	}
 	
 }
