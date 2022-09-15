@@ -61,6 +61,11 @@ public class AppointmentController {
 		return repo.findById(id);
 	}
 
+	@GetMapping("/appointments/user/{id}")
+	public Optional<Appointment> getAppointmentByPetId(@PathVariable Long id){
+		return repo.findById(id);
+	}
+	
 }
 
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.PetInfo;
@@ -53,6 +54,16 @@ public class PetInfoService {
 		
 		return toDelete;
 		
+	}
+	
+	public PetInfo findPetbyCustomerId(Long id) throws ResourceNotFoundException{
+		
+		Optional<PetInfo> found = petRepo.findById(id);
+		if(!found.isPresent()) {
+			throw new ResourceNotFoundException("Pet with id = " + id + " could not be found.");
+		}
+		return found.get();
+
 	}
 	
 }
