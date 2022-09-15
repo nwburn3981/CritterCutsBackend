@@ -125,18 +125,10 @@ public class Employee implements Serializable {
 		this.role = role;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", name=" + name + ", salary=" + salary + ", dob=" + dob
-				+ ", specialty=" + specialty + ", role=" + role + ", user=" + user + "]";
+				+ ", specialty=" + specialty + ", role=" + role +  "]";
 	}
 
 }

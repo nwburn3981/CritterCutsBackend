@@ -160,12 +160,36 @@ public class Customer implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<PetInfo> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<PetInfo> pets) {
+		this.pets = pets;
+	}
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
 
 	@Override
 	public String toString() {
 		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", dob=" + dob
 				+ ", customer_email=" + customer_email + ", customer_phone=" + customer_phone + ", username=" + username
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", role=" + role + ", pets=" + pets + "]";
 	}
+
+	
 
 }
