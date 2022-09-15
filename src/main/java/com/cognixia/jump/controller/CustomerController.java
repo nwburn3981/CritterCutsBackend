@@ -20,6 +20,9 @@ import com.cognixia.jump.model.Customer;
 import com.cognixia.jump.service.CustomerService;
 import com.cognixia.jump.util.JwtUtil;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @CrossOrigin
 @RequestMapping("/api")
 @RestController
@@ -40,11 +43,23 @@ public class CustomerController {
 	@Autowired
 	PasswordEncoder encoder;
 	
+	@Operation(summary = "Finds the customer by the id", description = "Searches the database for a customer which has the id matching the one given by the uri")
+	@ApiResponse(responseCode = "200", description = "Customer found")
+	@ApiResponse(responseCode = "400", description = "Customers not found")
+	@ApiResponse(responseCode = "401", description = "Forbidden: unauthorized")
+	@ApiResponse(responseCode = "403", description = "Forbidden: unauthorized 2: electric boogaloo")
+	@ApiResponse(responseCode = "404", description = "Page not found")
 	@GetMapping("/customer/{id}")
 	public Customer getCustomerById(@PathVariable long id) throws ResourceNotFoundException {
 		return custService.getCustomerById(id);
 	}
 	
+	@Operation(summary = "Creates a new customer", description = "Posts raw JSON data to be inserted into the database with all of the values needed to create a new customer")
+	@ApiResponse(responseCode = "201", description = "Customer created successfully")
+	@ApiResponse(responseCode = "400", description = "Customer not created")
+	@ApiResponse(responseCode = "401", description = "Forbidden: unauthorized")
+	@ApiResponse(responseCode = "403", description = "Forbidden: unauthorized 2: electric boogaloo")
+	@ApiResponse(responseCode = "404", description = "Page not found")
 	@PostMapping("/create/customer/{user_id}")
 	public ResponseEntity<?> createCustomer( @RequestBody Customer customer, @PathVariable Long user_id ) throws ResourceNotFoundException {
 		
