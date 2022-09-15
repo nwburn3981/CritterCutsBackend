@@ -54,7 +54,7 @@ public class SecurityConfiguration {
 			
 			/********************* ALL ROLES ***********************/
 			.antMatchers("/authenticate").permitAll() // allow anyone to create token
-			//.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
+			.anyRequest().authenticated()  //any other API in this project has to be authenticated (token or user info to access)
 
 			.and()
 				.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ); // tell spring security to NOT CREATE sessions

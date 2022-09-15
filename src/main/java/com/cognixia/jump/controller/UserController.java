@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognixia.jump.exception.ResourceNotFoundException;
 
 import com.cognixia.jump.model.AuthenticationRequest;
-
+import com.cognixia.jump.model.Customer;
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.UserRepository;
 
@@ -27,6 +28,9 @@ public class UserController {
 
 	@Autowired
 	UserRepository repo;
+	
+	@Autowired
+	PasswordEncoder encoder;
 
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
@@ -50,7 +54,7 @@ public class UserController {
 	@PutMapping("/users/update")
 	public User updateUser(User user) throws ResourceNotFoundException {
 
-		if (repo.existsById(user.getUser_id())) {
+		if (!repo.existsById(user.getUser_id())) {
 			throw new ResourceNotFoundException(
 					"User with id = " + user.getUser_id() + " could not be found and cannot be updated.");
 		}
@@ -77,5 +81,21 @@ public class UserController {
 		repo.deleteById(id);
 		return repo.findById(id);
 	}
+	
+	@PostMapping("/create/user")
+	public ResponseEntity<?> createUser( @RequestBody User user ) {
+		
+		user.setUser_id(-1L);
+		
+		// will take the plain text password that we get in and encode it before it gets saved to the database
+		// security isn't going to encode our passwords on its own
+		user.setPassword( encoder.encode( user.getPassword() ) );
+		
+		User created = repo.save(user);
+		
+		return ResponseEntity.status(201).body(created);
+		
+	}
+	
 
 }
