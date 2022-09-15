@@ -25,11 +25,7 @@ public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static enum Role {
-		ROLE_USER, // roles should start with capital ROLE_ and has to be completely in capital
-					// letters
-		ROLE_ADMIN
-	}
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,11 +47,6 @@ public class Employee implements Serializable {
 	@Column
 	private String specialty;
 
-	@Schema(description = "What role the employee has as a user", example = "ROLE_USER or ROLE_ADMIN", required = true)
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Role role;
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
 	@JsonIgnore
@@ -69,17 +60,16 @@ public class Employee implements Serializable {
 	private List<Appointment> appointment;
 
 	public Employee() {
-		this(-1L, "", 0, LocalDate.now(), "", Role.ROLE_USER, new User());
+		this(-1L, "", 0, LocalDate.now(), "", new User());
 	}
 
-	public Employee(Long employee_id, String name, int salary, LocalDate dob, String specialty, Role role, User user) {
+	public Employee(Long employee_id, String name, int salary, LocalDate dob, String specialty, User user) {
 		super();
 		this.employee_id = employee_id;
 		this.name = name;
 		this.salary = salary;
 		this.dob = dob;
 		this.specialty = specialty;
-		this.role = role;
 		this.user_id = user.getUser_id();
 	}
 
@@ -123,14 +113,6 @@ public class Employee implements Serializable {
 		this.specialty = specialty;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -158,7 +140,7 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", name=" + name + ", salary=" + salary + ", dob=" + dob
-				+ ", specialty=" + specialty + ", role=" + role + ", user=" + user + ", user_id=" + user_id
+				+ ", specialty=" + specialty + ", user=" + user + ", user_id=" + user_id
 				+ ", appointment=" + appointment + "]";
 	}
 

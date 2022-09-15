@@ -29,10 +29,6 @@ public class Customer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public static enum Role {
-		ROLE_USER	// roles should start with capital ROLE_ and has to be completely in capital letters
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,7 +49,7 @@ public class Customer implements Serializable {
 	@Schema(description = "Customer's phone number", example = "8005551234", required = true)
 	@Size(min = 10, max = 10)
 	@Column
-	//@Pattern(regexp = "^[0-9]{10}$")
+	// @Pattern(regexp = "^[0-9]{10}$")
 	private int customer_phone;
 
 	@Schema(description = "Customer's username", example = "username123", required = true)
@@ -65,25 +61,20 @@ public class Customer implements Serializable {
 	@Size(min = 3, max = 32)
 	@Column
 	private String password;
-	
-	@Schema(description = "Customer's role as a user", example = "ROLE_USER", required = true)
-	@Enumerated(EnumType.STRING)
-	@Column( nullable = false )
-	private Role role;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
 	@JsonIgnore
 	private User user;
-	
+
 	@Column
 	private Long user_id;
-	
+
 	@Schema(description = "The pets the customer owns", required = true)
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<PetInfo> pets;
-	
-	public Customer(){
+
+	public Customer() {
 		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A", new User());
 	}
 
@@ -156,17 +147,6 @@ public class Customer implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-	
-	
 
 	public User getUser() {
 		return user;
@@ -187,8 +167,6 @@ public class Customer implements Serializable {
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
-	
-	
 
 	public Long getUser_id() {
 		return user_id;
@@ -202,9 +180,7 @@ public class Customer implements Serializable {
 	public String toString() {
 		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", dob=" + dob
 				+ ", customer_email=" + customer_email + ", customer_phone=" + customer_phone + ", username=" + username
-				+ ", password=" + password + ", role=" + role + ", pets=" + pets + "]";
+				+ ", password=" + password + ", user=" + user + ", user_id=" + user_id + ", pets=" + pets + "]";
 	}
-
-	
 
 }
