@@ -88,4 +88,25 @@ public class PetInfoControllerTest {
 		verify(service, times(1)).getAllPetInfo();
 		verifyNoMoreInteractions(service);
 	}
+
+    @Test
+    void testGetPet() throws Exception {
+        long pet_id = 1;
+        String uri = STARTING_URI + "petInfo/id/{pet_id}";
+		
+		PetInfo pet = new PetInfo(1L, "Test Pet", 12, "Dog", "Poodle", false);
+
+        when(service.getPetById(pet_id)).thenReturn(pet);
+        mvc.perform(get(uri, pet_id)).andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+		.andExpect(jsonPath("$.pet_id").value(pet.getPet_id()))
+		.andExpect(jsonPath("$.pet_name").value(pet.getPet_name()))
+		.andExpect(jsonPath("$.pet_age").value(pet.getPet_age()))
+		.andExpect(jsonPath("$.pet_type").value(pet.getPet_type()))
+		.andExpect(jsonPath("$.pet_breed").value(pet.getPet_breed()))
+		.andExpect(jsonPath("$.pet_is_vaccinated").value(pet.getPet_is_vaccinated()));
+
+		verify(service, times(1)).getPetById(pet_id);
+		verifyNoMoreInteractions(service);
+    }
 }
