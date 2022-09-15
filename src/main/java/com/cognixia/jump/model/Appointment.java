@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 public class Appointment implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -23,25 +25,32 @@ public class Appointment implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointment_id;
 
+    @Schema(description = "Local Date of the appointment (YYYY-MM-DD)", example = "2000-10-01", required = true)
     @Column(nullable = false)
     private LocalDate appointment_date;
 
+    @Schema(description = "Local Time of the appointment (HR:MIN:SEC)", example = "12:30:00", required = true)
     @Column(nullable = false)
     private LocalTime appointment_time;
 
+    @Schema(description = "What kind of grooming care will be given to the pet", example = "Routine Groom + Nail Trim", required = true)
     @Column
     private String appointment_service;
 
+    @Schema(description = "The name of the Employee performing the grooming", example = "Jane Doe", required = true)
     @Column  
     private String appointment_caretaker;
 
+    @Schema(description = "How much the grooming service will cost in USD", example = "99.99", required = true)
     @Column
     private Double appointment_price;
     
+    @Schema(description = "Which pet the appointment is for", required = true)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = false, name = "pet_id")
     private PetInfo pet;
     
+    @Schema(description = "Which employee is administering the grooming session", required = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(unique = false, name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;

@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 public class User implements Serializable {
@@ -19,9 +22,13 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long user_id;
 	
+	@Schema(description = "User's username", example = "username999", required = true)
+	@Size(min = 1, max = 32)
 	@Column
 	private String username;
 	
+	@Schema(description = "User's password", example = "pw123", required = true)
+	@Size(min = 3, max = 32)
 	@Column
 	private String password;
 	

@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 public class Employee implements Serializable {
 
@@ -31,18 +33,23 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long employee_id;
 
+	@Schema(description = "Employee's name", example = "Jane Doe", required = true)
 	@Column
 	private String name;
 
+	@Schema(description = "Employee's annual salary in USD", example = "45000", required = true)
 	@Column
 	private int salary;
 
+	@Schema(description = "Local Date of employee's birth (YYYY-MM-DD)", example = "1980-02-29", required = true)
 	@Column
 	private LocalDate dob;
 
+	@Schema(description = "What types of pets the employee specializes in", example = "Exotic animals, cats", required = true)
 	@Column
 	private String specialty;
 
+	@Schema(description = "What role the employee has as a user", example = "ROLE_USER or ROLE_ADMIN", required = true)
 	@Column
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -51,6 +58,7 @@ public class Employee implements Serializable {
 	@JoinColumn(unique = true)
 	private User user;
 	
+	@Schema(description = "A list of appointments the employee has with customer's pets", required = true)
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Appointment> appointment;
 	
