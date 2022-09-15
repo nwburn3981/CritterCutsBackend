@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 public class PetInfo implements Serializable{
@@ -20,21 +23,28 @@ public class PetInfo implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long pet_id;
 	
+	@Schema(description = "The name of the pet", example = "Spot", required = true)
+	@Size(min = 1, max = 100)
 	@Column
 	private String pet_name;
 	
+	@Schema(description = "Estimate of the pets age in years", example = "4", required = true)
 	@Column
 	private Integer pet_age;
 	
+	@Schema(description = "What species of animal it is", example = "Guinea Pig", required = true)
 	@Column
 	private String pet_type;
 	
+	@Schema(description = "What breed the animal is", example = "Abyssinian", required = true)
 	@Column
 	private String pet_breed;
 	
+	@Schema(description = "If the pet is vaccinated for rabies and other diseases", example = "false", required = true)
 	@Column
 	private Boolean pet_is_vaccinated;
 	
+	@Schema(description = "The pet's owner's id", example = "1", required = true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(unique = false, name = "pet_owner_id", referencedColumnName = "customer_id")
 	private Customer owner;

@@ -1,6 +1,7 @@
 package com.cognixia.jump.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 public class Customer implements Serializable {
@@ -33,24 +37,35 @@ public class Customer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long customer_id;
 
+	@Schema(description = "Name of the customer", example = "John Doe", required = true)
 	@Column
 	private String customer_name;
 
+	@Schema(description = "Local Date of birth of the customer (YYYY-MM-DD)", example = "2000-10-01", required = true)
 	@Column
-	private Date dob;
+	private LocalDate dob;
 
+	@Schema(description = "Customer's email with regex pattern for email addresses", example = "useremailaddress123@fakemail.com", required = true)
 	@Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")
 	private String customer_email;
+
+	@Schema(description = "Customer's phone number", example = "8005551234", required = true)
+	@Size(min = 10, max = 10)
 	@Column
 	//@Pattern(regexp = "^[0-9]{10}$")
 	private int customer_phone;
 
+	@Schema(description = "Customer's username", example = "username123", required = true)
+	@Size(min = 1, max = 32)
 	@Column
 	private String username;
 
+	@Schema(description = "Customer's secret password", example = "pw123", required = true)
+	@Size(min = 3, max = 32)
 	@Column
 	private String password;
 	
+	@Schema(description = "Customer's role as a user", example = "ROLE_USER", required = true)
 	@Enumerated(EnumType.STRING)
 	@Column( nullable = false )
 	private Role role;
@@ -59,6 +74,7 @@ public class Customer implements Serializable {
 	@JoinColumn(unique = true)
 	private User user;
 	
+	@Schema(description = "The pets the customer owns", required = true)
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<PetInfo> pets;
 	
@@ -66,7 +82,7 @@ public class Customer implements Serializable {
 		this(-1L, "N/A", null, "N/A", 0, "N/A", "N/A", new User());
 	}
 
-	public Customer(Long customer_id, String customer_name, Date dOB,
+	public Customer(Long customer_id, String customer_name, LocalDate dOB,
 			@Pattern(regexp = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$") String customer_email,
 			@Pattern(regexp = "^[0-9]{10}$") int customer_phone, String username, String password, User user) {
 		super();
@@ -88,7 +104,7 @@ public class Customer implements Serializable {
 		return customer_name;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
@@ -116,7 +132,7 @@ public class Customer implements Serializable {
 		this.customer_name = customer_name;
 	}
 
-	public void setDOB(Date dob) {
+	public void setDOB(LocalDate dob) {
 		this.dob = dob;
 	}
 
