@@ -60,7 +60,7 @@ public class PetInfo implements Serializable {
 	}
 
 	public PetInfo(Long pet_id, String pet_name, Integer pet_age, String pet_type, String pet_breed,
-			Boolean pet_is_vaccinated, Customer Owner) {
+			Boolean pet_is_vaccinated, Customer owner) {
 		super();
 		this.pet_id = pet_id;
 		this.pet_name = pet_name;
