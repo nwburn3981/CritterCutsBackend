@@ -33,9 +33,9 @@ public class MyUserDetails implements UserDetails {
 		// Granted Authority -> permissions/grants a user has access to retrieve or operations to perform
 		// GA is given based on the user's roles, checks users type to grab role
 		if(user.getType().equals("Customer"))
-			this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getCustomer().getRole().name() ) );
+			this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getRole().name() ) );
 		else
-			this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getEmployee().getRole().name() ) );
+			this.authorities = Arrays.asList( new SimpleGrantedAuthority( user.getRole().name() ) );
 	}
 	
 	

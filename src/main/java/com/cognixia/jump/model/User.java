@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static enum Role {
+		ROLE_USER, // roles should start with capital ROLE_ and has to be completely in capital
+					// letters
+		ROLE_ADMIN
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,17 +58,22 @@ public class User implements Serializable {
 
 	@Column
 	private Long employee_id;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public User() {
-		this(-1L, "", "", false);
+		this(-1L, "", "", false, Role.ROLE_USER);
 	}
 
-	public User(Long user_id, String username, String password, boolean enabled) {
+	public User(Long user_id, String username, String password, boolean enabled, Role role) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
+		this.role = role;
 	}
 
 	public Long getUser_id() {
@@ -133,12 +146,24 @@ public class User implements Serializable {
 		else
 			return "Customer";
 	}
+	
+	
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", customer=" + customer + ", customer_id=" + customer_id + ", employee=" + employee
-				+ ", employee_id=" + employee_id + "]";
+				+ ", employee_id=" + employee_id + ", role=" + role + "]";
 	}
+
+
 
 }
