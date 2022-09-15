@@ -40,6 +40,7 @@ public class CustomerService {
 
 		User user = userService.getUserById(user_id);
 		user.setCustomer(customer);
+		user.setCustomer_id(customer.getCustomer_id());
 		userService.updateUser(user);
 
 		return saved;
