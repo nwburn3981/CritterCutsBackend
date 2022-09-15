@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
@@ -56,12 +58,16 @@ public class Employee implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
+	@JsonIgnore
 	private User user;
-	
+
+	@Column
+	private Long user_id;
+
 	@Schema(description = "A list of appointments the employee has with customer's pets", required = true)
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Appointment> appointment;
-	
+
 	public Employee() {
 		this(-1L, "", 0, LocalDate.now(), "", Role.ROLE_USER, new User());
 	}
@@ -74,7 +80,7 @@ public class Employee implements Serializable {
 		this.dob = dob;
 		this.specialty = specialty;
 		this.role = role;
-		this.user = user;
+		this.user_id = user.getUser_id();
 	}
 
 	public Long getEmployee_id() {
@@ -125,10 +131,35 @@ public class Employee implements Serializable {
 		this.role = role;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", name=" + name + ", salary=" + salary + ", dob=" + dob
-				+ ", specialty=" + specialty + ", role=" + role +  "]";
+				+ ", specialty=" + specialty + ", role=" + role + ", user=" + user + ", user_id=" + user_id
+				+ ", appointment=" + appointment + "]";
 	}
 
 }

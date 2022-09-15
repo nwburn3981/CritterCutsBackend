@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
@@ -71,7 +73,11 @@ public class Customer implements Serializable {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(unique = true)
+	@JsonIgnore
 	private User user;
+	
+	@Column
+	private Long user_id;
 	
 	@Schema(description = "The pets the customer owns", required = true)
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
@@ -92,7 +98,7 @@ public class Customer implements Serializable {
 		this.customer_phone = customer_phone;
 		this.username = username;
 		this.password = password;
-		this.user = user;
+		this.user_id = user.getUser_id();
 	}
 
 	public Long getCustomer_id() {
@@ -180,6 +186,16 @@ public class Customer implements Serializable {
 
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+	
+	
+
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 
 	@Override

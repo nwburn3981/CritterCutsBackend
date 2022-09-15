@@ -46,11 +46,14 @@ public class SecurityConfiguration {
 			
 			/********************* USER ROLE ***********************/
 //			.antMatchers("/api/username").hasRole("USER"))
-			.antMatchers("/create/customer").hasRole("USER")
+			.antMatchers("api/create/customer/{user_id}").hasRole("USER")
 			
 			
-			/********************* EMPLOYEE ROLE ***********************/
+			/********************* ADMIN ROLE ***********************/
 			
+			.antMatchers("api/appointments").hasRole("ADMIN")
+			.antMatchers("api//employees").hasRole("ADMIN")
+			.antMatchers("api/employees/*").hasRole("ADMIN")
 			
 			/********************* ALL ROLES ***********************/
 			.antMatchers("/authenticate").permitAll() // allow anyone to create token
