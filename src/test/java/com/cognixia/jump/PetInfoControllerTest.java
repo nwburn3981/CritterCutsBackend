@@ -1,64 +1,70 @@
-//package com.cognixia.jump;
-//
-//
-//import static org.mockito.Mockito.times;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.verifyNoMoreInteractions;
-//import static org.mockito.Mockito.when;
-//
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-////import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-////import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-//import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-////import static org.hamcrest.Matchers.*;
-//
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.http.MediaType;
-//import org.springframework.test.context.junit.jupiter.SpringExtension;
-//import org.springframework.test.web.servlet.MockMvc;
-////import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-//
-//import com.cognixia.jump.controller.PetInfoController;
-//import com.cognixia.jump.model.PetInfo;
-//import com.cognixia.jump.service.MyUserDetailsService;
-//import com.cognixia.jump.service.PetInfoService;
-//import com.cognixia.jump.util.JwtUtil;
-////import com.cognixia.jump.exception.ResourceNotFoundException;
-////import com.fasterxml.jackson.databind.ObjectMapper;
-//
-//@ExtendWith(SpringExtension.class)
-//@WebMvcTest(PetInfoController.class)
-//public class PetInfoControllerTest {
-//
-//	private final String STARTING_URI = "http://localhost:8080/api/";
-//	
-//	@Autowired
-//	private MockMvc mvc;
-//	
-//	@MockBean
-//	private PetInfoService service;
-//	
-//	@MockBean
-//	private MyUserDetailsService service2;
-//	
-//	@MockBean
-//	private JwtUtil util;
-//	
-//	@InjectMocks
-//	private PetInfoController controller;
-//	
+/**
+import org.junit.jupiter.api.Test;
+
+package com.cognixia.jump;
+
+
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.Matchers.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.cognixia.jump.controller.PetInfoController;
+import com.cognixia.jump.model.Customer;
+import com.cognixia.jump.model.PetInfo;
+import com.cognixia.jump.model.User;
+//import com.cognixia.jump.model.Customer.Role;
+import com.cognixia.jump.service.MyUserDetailsService;
+import com.cognixia.jump.service.PetInfoService;
+import com.cognixia.jump.util.JwtUtil;
+//import com.cognixia.jump.exception.ResourceNotFoundException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(PetInfoController.class)
+public class PetInfoControllerTest {
+
+	private final String STARTING_URI = "http://localhost:8080/api/";
+	
+	@Autowired
+	private MockMvc mvc;
+	
+	@MockBean
+	private PetInfoService service;
+	
+	@MockBean
+	private MyUserDetailsService service2;
+	
+	@MockBean
+	private JwtUtil util;
+	
+	@InjectMocks
+	private PetInfoController controller;
+	
 //	@Test
 //	void testGetAllPets() throws Exception {
 //		String uri = STARTING_URI + "petInfo";
@@ -93,7 +99,6 @@
 //    void testGetPet() throws Exception {
 //        long pet_id = 1;
 //        String uri = STARTING_URI + "petInfo/id/{pet_id}";
-//		
 //		PetInfo pet = new PetInfo(1L, "Test Pet", 12, "Dog", "Poodle", false);
 //
 //        when(service.getPetById(pet_id)).thenReturn(pet);
@@ -109,4 +114,5 @@
 //		verify(service, times(1)).getPetById(pet_id);
 //		verifyNoMoreInteractions(service);
 //    }
-//}
+}
+ */
