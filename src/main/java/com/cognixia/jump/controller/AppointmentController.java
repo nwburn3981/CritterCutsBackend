@@ -103,7 +103,7 @@ public class AppointmentController {
 	@ApiResponse(responseCode = "429", description = "STOP THAT")
 	@GetMapping("/appointments/user/{id}")
 	public Optional<Appointment> getAppointmentByPetId(@PathVariable Long id){
-		return repo.findById(id);
+		return repo.findAppointmentByPetId(id);
 	}
 	
 }
